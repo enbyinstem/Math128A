@@ -26,10 +26,9 @@ if abs(f_b)<=params.func_tol
 end
 while abs(b-a)>params.root_tol && i<params.maxit% repeat until f(b or s) = 0 or |b − a| is small enough (convergence)
     if f_a~=f_c && f_b~=f_c % if f(a) ≠ f(c) and f(b) ≠ f(c) then
-        s=(a*f_b*f_c)/((f_a-f_b)*(f_a-f_c))+(b*f_a*f_c)/((f_b-f_a)*(f_b-f_c))+(c*f_a*f_b)/((f_c-f_a)*(f_c-f_b));
-        % {\displaystyle s:={\frac {af(b)f(c)}{(f(a)-f(b))(f(a)-f(c))}}+{\frac {bf(a)f(c)}{(f(b)-f(a))(f(b)-f(c))}}+{\frac {cf(a)f(b)}{(f(c)-f(a))(f(c)-f(b))}}}s:={\frac {af(b)f(c)}{(f(a)-f(b))(f(a)-f(c))}}+{\frac {bf(a)f(c)}{(f(b)-f(a))(f(b)-f(c))}}+{\frac {cf(a)f(b)}{(f(c)-f(a))(f(c)-f(b))}} (inverse quadratic interpolation)
+        s=(a*f_b*f_c)/((f_a-f_b)*(f_a-f_c))+(b*f_a*f_c)/((f_b-f_a)*(f_b-f_c))+(c*f_a*f_b)/((f_c-f_a)*(f_c-f_b)); % (inverse quadratic interpolation)
     else % else
-        s=b-f_b*(b-a)/(f_b-f_a); % {\displaystyle s:=b-f(b){\frac {b-a}{f(b)-f(a)}}}s:=b-f(b){\frac {b-a}{f(b)-f(a)}} (secant method)
+        s=b-f_b*(b-a)/(f_b-f_a); % (secant method)
     end % end if
     f_s=func(s);
     if mflag>=5 && abs(b-a)>1/2*abs(b_0-a_0) || abs(f_s)>(1/2*abs(f_b_best))
